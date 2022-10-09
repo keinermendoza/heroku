@@ -2,6 +2,6 @@ Flask>=2.2.2
 gunicorn>=20.1.0
 itsdangerous>=2.0.1
 Jinja2>=3.0.3
-python-dotenv>=0.19.2
+python-dotenv>=0.19.2heroku
 requests>=2.27.1
 Werkzeug>=2.2.2
