@@ -28,8 +28,11 @@ def test():
         message = Message("Hola ", recipients=[email])
         message.body = "Enhorabuena! ah funcionado el envio de correos. Te invito a mantenerte en contacto con el creador de la pagina para saber cuando hayan nuevas actualizaciones en la funcionalidad de esta aplicacion web"
         mail.send(message)
-        flash("esta es una prueba de envio de correo electronico, por favor revisa tu buzon de correos", "message")
-        return render_template("test.html")
+
+        # aparentemente flash funciona solo dentro de las seciones
+        # flash("esta es una prueba de envio de correo electronico, por favor revisa tu buzon de correos", "message")
+        
+        return render_template("index.html")
     return render_template("test.html")
 
 if __name__ == '__main__':
