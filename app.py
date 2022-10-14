@@ -5,13 +5,16 @@ import os
 
 app = Flask(__name__)
 
+
+s3 = S3Connection(os.environ['MAIL_DEFAULT_SENDER'], os.environ['MAIL_PASSWORD'], os.environ['MAIL_USERNAME'], os.environ['SECRET_KEY'])
+
 # Configure send emails
-app.config["MAIL_DEFAULT_SENDER"] = S3Connection(os.environ['MAIL_DEFAULT_SENDER'])
-app.config["MAIL_PASSWORD"] = S3Connection(os.environ['MAIL_PASSWORD'])
+app.config["MAIL_DEFAULT_SENDER"] = os.environ['MAIL_DEFAULT_SENDER']
+app.config["MAIL_PASSWORD"] = os.environ['MAIL_PASSWORD']
 app.config["MAIL_PORT"] = 587
 app.config["MAIL_SERVER"] = "smtp.gmail.com"
 app.config["MAIL_USE_TLS"] = True
-app.config["MAIL_USERNAME"] = S3Connection(os.environ['MAIL_USERNAME'])
+app.config["MAIL_USERNAME"] = os.environ['MAIL_USERNAME']
 mail = Mail(app)
 
 @app.route("/")
