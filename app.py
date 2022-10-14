@@ -25,7 +25,7 @@ def index():
 def test():
     if request.method =="POST":
         email = request.form.get("email")
-        message = Message("Hola ", recipients=[email])
+        message = Message("Hola estimada@", recipients=[email])
         message.body = "Enhorabuena! ah funcionado el envio de correos. Te invito a mantenerte en contacto con el creador de la pagina para saber cuando hayan nuevas actualizaciones en la funcionalidad de esta aplicacion web"
         mail.send(message)
 
