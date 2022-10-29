@@ -24,7 +24,7 @@ app.config["MAIL_USERNAME"] = os.environ['MAIL_USERNAME']
 mail = Mail(app)
 
 # Configure Postrge Heroku as database
-engine = create_engine(os.environ['DATABASE_URL'])
+engine = create_engine(os.environ['DATABASE'])
 db = scoped_session(sessionmaker(bind=engine))
 
 #desaciendome de la chache
