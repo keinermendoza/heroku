@@ -6,11 +6,48 @@
     <input type="email" name="email" id="" placeholder="email">
     <input type="submit" value="Enviar Email">
 </form>
+<div class="container-imagenes">
 
-<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente, laboriosam! Odio nulla culpa blanditiis 
-        quis iste pariatur veritatis laboriosam iure optio? Cum ipsam quaerat, temporibus facilis necessitatibus quas incidunt deserunt minus. Nobis quasi aspernatur laudantium praesentium blanditiis odit itaque eos vero. Corporis, architecto! Doloribus repellendus ad neque, autem ipsa tempora adipisci quia repudiandae quaerat eius voluptatibus consequuntur, provident maxime! Cupiditate recusandae dignissimos temporibus saepe? Asperiores nostrum, laborum odio necessitatibus sint voluptatibus fugiat nulla, ab ipsam architecto exercitationem illum maiores dolores consectetur dolor quam blanditiis. Nesciunt odit quis fugiat officiis quibusdam eos pariatur corrupti obcaecati mollitia blanditiis sint, sapiente est modi illo earum recusandae numquam aliquam perspiciatis ad, enim beatae et impedit esse! Impedit
-        , corporis eos vitae omnis sed nesciunt quae obcaecati consequuntur? Voluptates nostrum iste ipsam itaque ullam!</p>
-    <a href="{{url_for('index')}}">esto deberia llevarte de vuelta a la pagina anterior</a>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas pariatur nostrum nulla est ab quam nam. 
-        Similique amet ipsam earum? Nemo aliquam accusamus quae natus ducimus earum voluptatibus fuga nisi.</p>
+    {% for img in imgs %}
+    <button class="imagen" value="{{img.hexa}}">&#{{img.hexa}}</button>    
+    {% endfor %}
+
+</div>
+
+<a href="{{url_for('index')}}">esto deberia llevarte de vuelta a la pagina anterior</a>
+<input id="que" autocomplete="off" autofocus placeholder="Query" type="text">
+
+<div id="container-to-item-selected"></div>
+        
+{% endblock %}
+
+{% block bottom %}
+
+        <script>
+      
+            let input = document.querySelector('#que');
+            input.addEventListener('input', async function() {
+                let response = await fetch('/search?q=' + input.value);
+                let shows = await response.text();
+                document.getElementById('container-to-item-selected').innerHTML = shows;
+            });
+
+            const emojis = document.getElementsByClassName('imagen');
+                for (i = 0; i < emojis.length; i++) {
+                    emojis[i].addEventListener('click', async function() {
+                    let response = await fetch('/search?q=' + this.innerHTML);
+                    let shows = await response.text();
+                    document.getElementById('container-to-item-selected').innerHTML = shows;
+                    
+                    // Mostrando el valor del boton que acabo de trar de "/search"
+                    document.getElementById('button-item-selected-like').addEventListener('click', function(){
+                        alert(this.value);
+                    });
+                });
+            }
+         
+            
+    
+        </script>
+
 {% endblock %}
