@@ -9,4 +9,3 @@ flask_mail
 boto
 psycopg2-binary
 sqlalchemy
-postgresql
