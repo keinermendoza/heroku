@@ -8,3 +8,5 @@ Werkzeug>=2.2.2
 flask_mail
 boto
 psycopg2-binary
+sqlalchemy
+postgresql
