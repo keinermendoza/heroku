@@ -6,16 +6,19 @@
     <input type="email" name="email" id="" placeholder="email">
     <input type="submit" value="Enviar Email">
 </form>
+<p>Si abres esta pagina desde una computadora veras una lista grande de comidas de Emojis.</p>
+<p>Si abres esta pagina desde un telefono puedes copiar un emoji de comida justo abajo de este texto.</p>
+<input id="input-emoji" autocomplete="off" autofocus placeholder="Add Emoji food" type="text">
+<input id="search-button" type="button" value="Serach">
 <div class="container-imagenes">
 
     {% for img in imgs %}
-    <button class="imagen" value="{{img.hexa}}">&#{{img.hexa}}</button>    
+    <button class="imagen" value="&#{{img.hexa}}">&#{{img.hexa}}</button>    
     {% endfor %}
 
 </div>
 
 <a href="{{url_for('index')}}">esto deberia llevarte de vuelta a la pagina anterior</a>
-<input id="que" autocomplete="off" autofocus placeholder="Query" type="text">
 
 <div id="container-to-item-selected"></div>
         
@@ -24,10 +27,10 @@
 {% block bottom %}
 
         <script>
-      
-            let input = document.querySelector('#que');
-            input.addEventListener('input', async function() {
-                let response = await fetch('/search?q=' + input.value);
+            // searching from input-box
+            let searchButton = document.querySelector('#search-button');
+            searchButton.addEventListener('click', async function() {
+                let response = await fetch('/search?q=' + document.querySelector('#input-emoji').value);
                 let shows = await response.text();
                 document.getElementById('container-to-item-selected').innerHTML = shows;
             });
